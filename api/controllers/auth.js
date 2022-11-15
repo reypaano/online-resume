@@ -21,8 +21,7 @@ export const register = (req,res) => {
         db.query(insQuery, [values], (err, data)=> {
             if(err) return res.json(err)
             return res.status(200).json("User has been created!")
-            }
-         )
+            })
     })
 }
 
@@ -57,5 +56,9 @@ export const login = (req,res) => {
 }
 
 export const logout = (req,res) => {
+    res.clearCookie("access_token", {
+        sameSite:"none",
+        secure:true
+    }).status(200).json("User has been loggoed out!")
     
 }

@@ -4,6 +4,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 
 import authRoutes from "./routes/auth.js"
+import goalsRoutes from "./routes/goals.js"
 import usersRoutes from "./routes/users.js"
 
 app.use(express.json())
@@ -12,6 +13,7 @@ app.use(cors())
 app.use("/api/posts", authRoutes)
 
 app.use("/api/auth", authRoutes)
+app.use("/api/goals", goalsRoutes)
 app.use("/api/users", usersRoutes)
 
 // app.get('/',(req,res)=>{
