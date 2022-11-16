@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { AuthContext } from '../context/authContext'
 import { toast } from 'react-toastify'
+import dateFormat from 'dateformat'
 
 function Goals() {
   const [data, setData] =useState([])
@@ -36,15 +37,15 @@ function Goals() {
         </div>
           
         <div className='table-container'>
-          <table className='styled-table'>
+          <table className='styled-table' >
             <thead>
               <tr>
                 <th> ID</th>
-                <th> NAME</th>
-                <th> DESCRIPTION</th>
+                <th style = {{width: "15%"}}> NAME</th>
+                <th style = {{width: "40%"}}> DESCRIPTION</th>
                 <th> TARGET DATE</th>
-                <th> COMPLETED DATE</th>
-                <th> ACTION</th>
+                <th style = {{width: "10%"}}> COMPLETED DATE</th>
+                <th style = {{width: "150px"}}> ACTION</th>
               </tr>
             </thead>
             <tbody>
@@ -54,8 +55,8 @@ function Goals() {
                     <th scope='row'>{index+1}</th>
                     <td>{item.goal_name}</td>
                     <td>{item.goal_description}</td>
-                    <td>{item.goal_target_date}</td>
-                    <td>{item.goal_completed}</td>
+                    <td>{dateFormat(item.goal_target_date, "yyyy-mm-dd")}</td>
+                    <td>{dateFormat(item.goal_completed, "yyyy-mm-dd")}</td>
                     <td>
                       <Link to={`/update/` + item.id}>
                         <button  className='btn btn-edit'>EDIT</button>
