@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
 
-
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
@@ -16,6 +15,7 @@ export const AuthContextProvider = ({children}) => {
     const logout = async(inputs) => {
         await axios.post("http://localhost:3001/api/auth/logout")
         setCurrentUser(null)
+        
     }
 
     useEffect(() => {

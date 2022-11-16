@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser"
 
 import authRoutes from "./routes/auth.js"
 import goalsRoutes from "./routes/goals.js"
-import usersRoutes from "./routes/users.js"
+import expeInfoRoutes from "./routes/expeInfo.js"
 
 app.use(express.json())
 app.use(cookieParser())
@@ -14,11 +14,9 @@ app.use("/api/posts", authRoutes)
 
 app.use("/api/auth", authRoutes)
 app.use("/api/goals", goalsRoutes)
-app.use("/api/users", usersRoutes)
+app.use("/api/experience-info", expeInfoRoutes)
 
-// app.get('/',(req,res)=>{
-//     res.send("Hello po")
-// })
+
 app.listen(3001, ()=>{
     console.log("Connected")
 })

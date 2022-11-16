@@ -28,7 +28,7 @@ function Login() {
     try{
       await login(inputs)
       const response = await axios.post("http://localhost:3001/api/auth/login", inputs)
-      navigate("/")
+      navigate("/landing")
     } catch(err){
         setError(err.response.data)
     }

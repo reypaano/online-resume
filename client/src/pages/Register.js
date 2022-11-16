@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function Register() {
   const [inputs, setInputs] = useState({
@@ -24,7 +25,8 @@ function Register() {
     e.preventDefault()
     try{
       const response = await axios.post("http://localhost:3001/api/auth/register", inputs)
-      navigate("/login")
+      navigate("/")
+      toast.success("User added successfully!")
     } catch(err){
         setError(err.response.data)
     }
@@ -34,14 +36,14 @@ function Register() {
  
   return (
     <div className="auth">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form>
             <input required type="text" placeholder='username' name='username' onChange={handleChange}/>
             <input required type="email" placeholder='email' name='email' onChange={handleChange}/>
             <input required type="password" placeholder='password' name='password' onChange={handleChange}/>
             <button onClick={handleSubmit}>Register</button>
             { err && <p> {err}</p>}
-            <span>Do you have an account? <Link to="/login">Register</Link></span>
+            <span>Do you have an account? <Link to="/">Register</Link></span>
         </form>
     </div>
   )

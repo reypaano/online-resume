@@ -1,25 +1,35 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import {ReactComponent as WorkLogo}  from '../../images/work.svg'
 import {ReactComponent as SchoolLogo}  from '../../images/school.svg'
-import timelineElements from '../../pages/timelineElements'
+import axios from 'axios'
 
 import {
     VerticalTimeline, 
     VerticalTimelineElement
 } from 'react-vertical-timeline-component'
-
 import "react-vertical-timeline-component/style.min.css"
 
 function Timeline() {
     const workIconStyles = {background: "#06d6a0"};
     const schoolIconStyle = {background: "#f9c74f"};
+    const [data, setData] =useState([])
+
+    const loadData = async () => {
+        const response = await axios.get(`http://localhost:3001/api/experience-info/` )
+        setData(response.data)
+    } 
+
+    useEffect (() => {
+        loadData()
+      }, [])
+
   return (
     <div className='timeline'>
-        <h1 className='title'>Timeline</h1>
+        <h1 className='title'>Experience Timeline</h1>
         <VerticalTimeline>
             {
-                timelineElements.map(element=>{
-                    const isWorkIcon= element.icon ==="work";
+                data.map(element=>{
+                    const isWorkIcon= element.expe_type ==="work";
                     const showButton = element.buttonText !== undefined 
                         && element.buttonText !== null 
                         && element.buttonText  !== ""; 
